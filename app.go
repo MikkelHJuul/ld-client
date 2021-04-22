@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/MikkelHJuul/ld/client/impl"
+	"github.com/MikkelHJuul/ld/client/client"
 	"github.com/desertbit/grumble"
 )
 
@@ -25,7 +25,7 @@ var (
 			a.String("key", "the key to fetch")
 		},
 		Flags: sharedFlags,
-		Run:   impl.Get,
+		Run:   client.Get,
 	}
 
 	setCmd = &grumble.Command{
@@ -37,7 +37,7 @@ var (
 			a.String("value", "the value to set, or to serialize if protofile is set")
 		},
 		Flags: sharedFlags,
-		Run:   impl.Set,
+		Run:   client.Set,
 	}
 
 	getRangeCmd = &grumble.Command{
@@ -51,7 +51,7 @@ var (
 			sharedFlags(f)
 		},
 		Aliases: []string{"getran"},
-		Run:     impl.GetRange,
+		Run:     client.GetRange,
 	}
 
 	deleteCmd = &grumble.Command{
@@ -62,7 +62,7 @@ var (
 			a.String("key", "the key to fetch")
 		},
 		Flags: sharedFlags,
-		Run:   impl.Delete,
+		Run:   client.Delete,
 	}
 
 	deleteRangeCmd = &grumble.Command{
@@ -76,7 +76,7 @@ var (
 			sharedFlags(f)
 		},
 		Aliases: []string{"delran"},
-		Run:     impl.DeleteRange,
+		Run:     client.DeleteRange,
 	}
 
 	// Version acts as a target for compile-time linking the project version into the code
