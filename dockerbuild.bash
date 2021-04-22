@@ -10,6 +10,9 @@ tagAndPush() {
 }
 
 if docker pull mjuul/ld-client:"$client_tag" >&- 2>&-; then
+  echo "nothing built"
+  exit 1
+else
   docker build --build-arg VERSION="$client_tag" -t ld-client -f dockerfiles/Dockerfile_client .
 
   if tagAndPush ld-client mjuul/ld-client:"$client_tag"; then
@@ -20,9 +23,5 @@ if docker pull mjuul/ld-client:"$client_tag" >&- 2>&-; then
     echo "pushed ld-client:latest to docker-hub"
   fi
 
-  docker build -t ldwclient -f dockerfiles/Dockerfile_ldwclient .
-else
-  echo "nothing built"
-  exit 1
 fi
 
